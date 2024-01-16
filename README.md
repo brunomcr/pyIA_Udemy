@@ -703,3 +703,6 @@ Onde:
 - É importante considerar o intervalo dos dados usados para treinar o modelo ao fazer previsões, pois prever fora
   desse intervalo (extrapolação) pode levar a resultados menos confiáveis.
 
+  
+# Segue link de calclulo simples de Regressao Linear
+[RegressaoLinearSimples.py](RegressaoLinearSimples.py)
