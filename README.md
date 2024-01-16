@@ -704,6 +704,14 @@ Onde:
   desse intervalo (extrapolação) pode levar a resultados menos confiáveis.
 
   
-# Segue link de calclulo simples de Regressao Linear
+
+## Segue link de calclulo simples de Regressao Linear
 * Exemplo 1: [RegressaoLinearSimples.py](RegressaoLinearSimples.py)
 * Exemplo 2: [Analise_Regressao_Automoveis.py](Analise_Regressao_Automoveis.py)
+
+
+<hr>
+
+
+# Probabilidade para Classificação
+
