@@ -450,7 +450,8 @@ O Coeficiente de Correlação de Pearson, denotado como (r), é calculado pela f
   - `Σ` representa a soma sobre todos os valores.
   - A expressão `√` denota a raiz quadrada.
 
-Esta fórmula calcula a covariância entre as variáveis X e Y e a divide pelo produto de seus desvios padrão, fornecendo uma medida normalizada da relação linear entre as duas variáveis.
+Esta fórmula calcula a covariância entre as variáveis X e Y e a divide pelo produto de seus desvios padrão, fornecendo 
+uma medida normalizada da relação linear entre as duas variáveis.
 
 
 ## Regressão Linear
@@ -476,13 +477,16 @@ O modelo mais simples é a regressão linear simples, que utiliza uma única var
 ### Variáveis Simples (Univariadas)
 
 ### Definição
-- **Variáveis Simples**: Em estatística e modelagem, uma variável simples refere-se a uma única variável independente usada em análises ou modelos.
+- **Variáveis Simples**: Em estatística e modelagem, uma variável simples refere-se a uma única variável independente 
+  usada em análises ou modelos.
 
 ### Uso em Regressão
-- **Regressão Linear Simples**: Um modelo de regressão que usa apenas uma variável independente para prever uma variável dependente.
+- **Regressão Linear Simples**: Um modelo de regressão que usa apenas uma variável independente para prever uma 
+  variável dependente.
 - **Exemplo de Equação**:
   - `Y = β0 + β1X + ε`
-  - Onde `Y` é a variável dependente, `X` é a variável independente, `β0` é o intercepto, `β1` é o coeficiente da variável independente, e `ε` é o termo de erro.
+  - Onde `Y` é a variável dependente, `X` é a variável independente, `β0` é o intercepto, `β1` é o coeficiente da 
+    variável independente, e `ε` é o termo de erro.
 
 ### Variáveis Múltiplas (Multivariadas)
 
@@ -490,16 +494,21 @@ O modelo mais simples é a regressão linear simples, que utiliza uma única var
 - **Variáveis Múltiplas**: Referem-se ao uso de duas ou mais variáveis independentes em análises ou modelos.
 
 ### Uso em Regressão
-- **Regressão Linear Múltipla**: Um modelo que utiliza várias variáveis independentes para prever uma variável dependente.
+- **Regressão Linear Múltipla**: Um modelo que utiliza várias variáveis independentes para prever uma 
+  variável dependente.
 - **Exemplo de Equação**:
   - `Y = β0 + β1X1 + β2X2 + ... + βnXn + ε`
-  - Onde `Y` é a variável dependente, `X1, X2, ..., Xn` são as variáveis independentes, `β0` é o intercepto, `β1, β2, ..., βn` são os coeficientes para cada variável independente, e `ε` é o termo de erro.
+  - Onde `Y` é a variável dependente, `X1, X2, ..., Xn` são as variáveis independentes, `β0` é o intercepto, 
+    `β1, β2, ..., βn` são os coeficientes para cada variável independente, e `ε` é o termo de erro.
 
 ### Considerações Importantes
 
-- **Complexidade**: Modelos com múltiplas variáveis são mais complexos e podem requerer cuidados adicionais na interpretação e na verificação das suposições do modelo.
-- **Risco de Overfitting**: Modelos com muitas variáveis podem se ajustar demais aos dados de treinamento, reduzindo a capacidade de generalização para novos dados.
-- **Análise de Causalidade**: Em ambos os tipos de modelos, a correlação não implica causalidade. É importante realizar análises adicionais para inferências causais.
+- **Complexidade**: Modelos com múltiplas variáveis são mais complexos e podem requerer cuidados adicionais na 
+  interpretação e na verificação das suposições do modelo.
+- **Risco de Overfitting**: Modelos com muitas variáveis podem se ajustar demais aos dados de treinamento, reduzindo
+  a capacidade de generalização para novos dados.
+- **Análise de Causalidade**: Em ambos os tipos de modelos, a correlação não implica causalidade. É importante realizar
+  análises adicionais para inferências causais.
 
 
 
@@ -565,13 +574,16 @@ O residual de uma observação é calculado como:
 - **Melhoria do Modelo**: A análise dos residuais pode fornecer insights para aperfeiçoar o modelo de regressão.
 
 ### Representação Gráfica
-- Gráficos de residuais, como gráficos de dispersão dos residuais versus valores ajustados, são ferramentas visuais úteis para avaliar a adequação do modelo de regressão.
+- Gráficos de residuais, como gráficos de dispersão dos residuais versus valores ajustados, são ferramentas visuais
+  úteis para avaliar a adequação do modelo de regressão.
 
 
 ## Inclinação em Modelos de Regressão Linear
 
 ### Definição de Inclinação
-A inclinação, no contexto de um modelo de regressão linear, refere-se ao coeficiente que quantifica a relação entre a variável independente e a variável dependente. Ela indica a mudança esperada na variável dependente para cada unidade de mudança na variável independente.
+A inclinação, no contexto de um modelo de regressão linear, refere-se ao coeficiente que quantifica a relação entre a 
+variável independente e a variável dependente. Ela indica a mudança esperada na variável dependente para cada unidade
+de mudança na variável independente.
 
 ### Fórmula da Inclinação 
 A inclinação em um modelo de regressão linear simples é calculada pela fórmula:
@@ -586,12 +598,14 @@ Onde:
 - `Σ` representa a soma sobre todos os valores.
 
 ### Interpretação da Inclinação
-- Um valor positivo de `β1` indica uma relação positiva entre X e Y, onde um aumento em X está associado a um aumento em Y.
+- Um valor positivo de `β1` indica uma relação positiva entre X e Y, onde um aumento em X está associado a um 
+  aumento em Y.
 - Um valor negativo de `β1` indica uma relação negativa, onde um aumento em X está associado a uma diminuição em Y.
 - O valor de `β1
 
 ### Fórmula Alternativa para a Inclinação
-A inclinação (m) em uma regressão linear simples também pode ser calculada usando a correlação entre as variáveis e o desvio padrão de cada variável:
+A inclinação (m) em uma regressão linear simples também pode ser calculada usando a correlação entre as variáveis e o
+desvio padrão de cada variável:
 
 * #### Fórmula Baseada na Correlação e Desvios Padrão
   `m = r × (Sy / Sx)`
@@ -654,7 +668,8 @@ e desempenha um papel importante na interpretação do modelo.
 ## Previsão em Modelos de Regressão Linear
 
 ### Definição de Previsão
-A previsão em modelos de regressão linear é o processo de usar a equação do modelo para estimar o valor da variável dependente (Y) com base em valores conhecidos ou novos das variáveis independentes (X).
+A previsão em modelos de regressão linear é o processo de usar a equação do modelo para estimar o valor da variável 
+dependente (Y) com base em valores conhecidos ou novos das variáveis independentes (X).
 
 ### Fórmula de Previsão
 A fórmula para realizar previsões em um modelo de regressão linear simples é:
@@ -668,7 +683,8 @@ Onde:
 - `X` é o valor da variável independente para a qual estamos fazendo a previsão.
 
 ### Processo de Previsão
-1. **Determinar os Coeficientes**: Primeiro, identifique ou calcule os coeficientes `β0` (interceptação) e `β1` (inclinação) usando os dados de treinamento.
+1. **Determinar os Coeficientes**: Primeiro, identifique ou calcule os coeficientes `β0` (interceptação) e 
+   `β1` (inclinação) usando os dados de treinamento.
 2. **Aplicar a Fórmula**: Substitua os coeficientes e o valor de X na fórmula para obter a previsão.
 3. **Interpretação da Previsão**: O resultado `Ŷ` é a estimativa do valor de Y dado o valor específico de X.
 
@@ -678,9 +694,12 @@ Onde:
 
 ### Importância da Previsão
 - A capacidade de fazer previsões precisas é um aspecto fundamental da análise de regressão linear.
-- Previsões baseadas em modelos de regressão ajudam a quantificar o impacto esperado de mudanças em variáveis independentes sobre a variável dependente.
+- Previsões baseadas em modelos de regressão ajudam a quantificar o impacto esperado de mudanças em variáveis 
+  independentes sobre a variável dependente.
 
 ### Limitações
-- As previsões são apenas tão precisas quanto o modelo utilizado. Se o modelo não se ajustar bem aos dados ou se basear em suposições incorretas, as previsões podem ser imprecisas.
-- É importante considerar o intervalo dos dados usados para treinar o modelo ao fazer previsões, pois prever fora desse intervalo (extrapolação) pode levar a resultados menos confiáveis.
+- As previsões são apenas tão precisas quanto o modelo utilizado. Se o modelo não se ajustar bem aos dados ou 
+  se basear em suposições incorretas, as previsões podem ser imprecisas.
+- É importante considerar o intervalo dos dados usados para treinar o modelo ao fazer previsões, pois prever fora
+  desse intervalo (extrapolação) pode levar a resultados menos confiáveis.
 
