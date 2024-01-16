@@ -705,4 +705,5 @@ Onde:
 
   
 # Segue link de calclulo simples de Regressao Linear
-[RegressaoLinearSimples.py](RegressaoLinearSimples.py)
+* Exemplo 1: [RegressaoLinearSimples.py](RegressaoLinearSimples.py)
+* Exemplo 2: [Analise_Regressao_Automoveis.py](Analise_Regressao_Automoveis.py)
