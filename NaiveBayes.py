@@ -7,7 +7,7 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 from yellowbrick.classifier import ConfusionMatrix
 
 # Importando os dados do CSV
-csv_data = pd.read_csv('/kaggle/input/jobs-in-data/jobs_in_data.csv')
+csv_data = pd.read_csv('Src/jobs_in_data.csv')
 
 # Definindo as Variáveis Dependentes (Y) e Independentes (X)
 Y = csv_data['work_setting'].values  # Variável Dependente
