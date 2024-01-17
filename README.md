@@ -714,4 +714,34 @@ Onde:
 
 
 # Probabilidade para Classificação
+A probabilidade para classificação refere-se à aplicação de princípios probabilísticos para classificar dados em
+diferentes categorias ou classes.
 
+* ## Teorema de Bayes
+
+  O Teorema de Bayes é fundamental na classificação probabilística. Ele ajuda a calcular a probabilidade de uma classe, dado um conjunto de atributos (features).
+
+  ### Fórmula do Teorema de Bayes
+
+  `P(Classe | Dados) = (P(Dados | Classe) × P(Classe)) / P(Dados)`
+<br>
+<br>
+  Onde:
+  - `P(Classe | Dados)` é a probabilidade posterior de uma classe (saída) dado um conjunto de dados (entrada).
+  - `P(Dados | Classe)` é a probabilidade de observar os dados dado que a classe é verdadeira.
+  - `P(Classe)` é a probabilidade prévia da classe.
+  - `P(Dados)` é a probabilidade dos dados.
+
+* ## Classificador Bayesiano Ingênuo (Naive Bayes)
+
+  O Classificador Bayesiano Ingênuo é um classificador probabilístico baseado no Teorema de Bayes. É chamado de "ingênuo" porque assume que todas as características são independentes entre si.
+
+  ### Fórmula Básica
+
+  `P(Classe|Dados) ∝ P(Classe) × ∏_{i} P(Dado_i|Classe`
+<br>
+<br>
+  Onde:
+  - `P(Classe|Dados)` é a probabilidade posterior de uma classe, dado um conjunto de dados.
+  - `P(Classe)` é a probabilidade prévia da classe.
+  - `∏_{i} P(Dado_i|Classe)` é o produto das probabilidades de cada característica individual, dado a classe.
