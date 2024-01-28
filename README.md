@@ -908,3 +908,10 @@ A poda pode ser feita durante a construção da árvore (poda prévia) ou após 
 ### Importância do Alinhamento com os Dados
 
 A eficácia de uma árvore de decisão depende fortemente de quão bem suas divisões refletem as relações subjacentes nos dados.
+
+## Segue link de calclulo de Arvore de Decisão
+* Utilizando o Graphviz [DecisionTree_Graphviz.py](DecisionTree_Graphviz.py)
+* Utilizando o MatPlot [DecisionTree_MatPlot.py](DecisionTree_MatPlot.py)
+
+<hr>
+
