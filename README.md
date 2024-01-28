@@ -12,32 +12,32 @@ Formação Inteligência Artificial e Machine Learning 2023
 
 # Algoritimos / Métodos
 
-* ### 1.   Classificação (Supervisionado)
+* ### 1. Classificação (Supervisionado)
   * A classificação é uma técnica de Machine Learning usada para descrever ou prever um atributo categórico.
   Ela é frequentemente usada quando você deseja categorizar dados em grupos ou classes,
   como determinar se um e-mail é spam ou não.
 
-* ### 2.   Regressão (Supervisionado)
+* ### 2. Regressão (Supervisionado)
   * A regressão é usada para prever um atributo numérico. Ao contrário da classificação, que lida com categorias,
   a regressão lida com valores contínuos. Por exemplo, prever o preço de uma casa com base em características
   como tamanho, localização e número de quartos é um problema de regressão.
 
-* ### 3.   Agrupamentos (Não Supervisionado)
+* ### 3. Agrupamentos (Não Supervisionado)
   * Agrupamento é uma técnica que visa agrupar dados com base em características ou semelhanças matemáticas.
     É útil quando você deseja encontrar padrões em seus dados e agrupar pontos de dados semelhantes juntos,
     mesmo que você não saiba de antemão quais grupos existem.
 
-* ### 4.   Regras de Associação (Supervisionado ou Não Supervisionado)
+* ### 4. Regras de Associação (Supervisionado ou Não Supervisionado)
   * As regras de associação são usadas para descobrir relações e associações entre diferentes itens
   em conjuntos de dados. Isso é frequentemente usado em sistemas de recomendação, como sugerir produtos 
   a clientes com base em seus históricos de compras.
 
-* ### 5.   Detecção de Anomalias
-* ### 6.   Aprendizado por reforço
-* ### 7.   Processamento de Linguagem Natural (NLP)
-* ### 8.   Redes Neurais
-* ### 9.   Redução de dimensionalidade / Seleção de recursos
-* ### 10.  Aprendizado semisupervisionado
+* ### 5. Detecção de Anomalias
+* ### 6. Aprendizado por reforço
+* ### 7. Processamento de Linguagem Natural (NLP)
+* ### 8. Redes Neurais
+* ### 9. Redução de dimensionalidade / Seleção de recursos
+* ### 10. Aprendizado semisupervisionado
 
 <hr>
 
@@ -914,4 +914,105 @@ A eficácia de uma árvore de decisão depende fortemente de quão bem suas divi
 * Utilizando o MatPlot [DecisionTree_MatPlot.py](DecisionTree_MatPlot.py)
 
 <hr>
+
+
+
+## Aprendizado Ensemble (Aprendizado em Grupo / Métodos de Conjunto)
+É um método de Machine Learning que utiliza a combinação de múltiplos modelos de aprendizado para
+melhorar o desempenho em tarefas como classificação, regressão e detecção de anomalias. Ao invés de usar um único modelo
+preditivo, o aprendizado ensemble emprega um conjunto de modelos para obter melhores resultados.
+
+## Características Principais do Aprendizado Ensemble
+
+* ### Diversidade de Modelos
+  O aprendizado ensemble é baseado na diversidade, seja por diferentes algoritmos, conjuntos de dados ou parâmetros.
+
+* ### Redução de Erro
+  Visa combinar as forças de vários modelos para minimizar os erros.
+
+* ### Métodos de Ensemble
+  * #### Bagging
+    - Cria versões variadas do conjunto de dados de treinamento, treina modelos separados nesses conjuntos e combina suas saídas.
+
+  * #### Boosting
+    - Constrói modelos de forma sequencial, onde cada novo modelo foca em corrigir os erros dos modelos anteriores.
+
+  * ### Votação e Agregação
+  Os modelos no ensemble contribuem para a decisão final através de votação (classificação) ou agregação (regressão).
+
+  * ### Redução de Overfitting
+  Pode reduzir o overfitting de modelos complexos.
+
+## Inclusão de Random Forest, Bagging, Boosting e AdaBoost
+  * ### Random Forest
+    - Um exemplo clássico de bagging.
+    - Consiste em múltiplas árvores de decisão, cada uma treinada em um subconjunto aleatório dos dados.
+    - Reduz overfitting e melhora a precisão em comparação com uma única árvore de decisão.
+
+  * ### Bagging
+    - Técnica usada no Random Forest.
+    - Envolve treinar modelos independentemente em diferentes subconjuntos dos dados e depois combinar suas previsões.
+    - Reduz a variância dos modelos individuais.
+
+  * ### Boosting
+    - Diferente do bagging, boosting treina modelos de forma sequencial.
+    - Cada modelo subsequente tenta corrigir os erros do modelo anterior.
+    - Aumenta a precisão, mas pode ser mais suscetível a overfitting em comparação com o bagging.
+
+  * ### AdaBoost (Adaptive Boosting)
+    - Uma forma específica de boosting.
+    - Começa com um modelo fraco e aumenta iterativamente o peso das instâncias mal classificadas.
+    - Os modelos subsequentes focam mais nas instâncias difíceis, refinando continuamente o modelo.
+
+## Segue link de calclulo de Random Forest
+* [RandomForest.py](RandomForest.py)
+
+<hr>
+
+* ## Classificação Baseada em Modelo (Model-based Classification):
+Nesse contexto, a classificação baseada em modelo se refere à criação de um modelo de aprendizado de máquina que é treinado com dados de treinamento para aprender a classificar diferentes tipos de entradas. Isso envolve a construção de um modelo estatístico ou algoritmo que pode fazer previsões ou classificações com base nos padrões identificados nos dados de treinamento. Os modelos podem incluir regressão logística, árvores de decisão, redes neurais, entre outros.
+
+* ## Classificação Baseada em Instância (Instance-based Classification):
+A classificação baseada em instância, por outro lado, refere-se a um método de classificação que não cria um modelo global. Em vez disso, ele classifica novas instâncias (dados de entrada) com base na similaridade com instâncias de treinamento conhecidas. O algoritmo considera as instâncias de treinamento como referências e classifica a nova instância com base em quais instâncias de treinamento são mais semelhantes à nova entrada. O algoritmo de classificação k-NN (k-nearest neighbors) é um exemplo desse tipo de abordagem, onde a classificação é feita com base nas k instâncias de treinamento mais próximas à nova instância.
+
+<hr>
+
+## K-Nearest Neighbors (KNN) - Machine Learning
+O K-Nearest Neighbors (KNN) é um algoritmo de aprendizado supervisionado amplamente utilizado para classificação e regressão. Ele se baseia no princípio de que objetos semelhantes tendem a estar próximos uns dos outros em um espaço de características.
+
+### Distância Euclidiana
+A distância Euclidiana é usada para calcular a proximidade entre pontos no espaço de características. A fórmula da distância Euclidiana entre dois pontos A e B em um espaço de n dimensões é:
+
+* #### Formula
+`dist(A, B) = sqrt((x1 - x2)^2 + (y1 - y2)^2 + ... + (xn - yn)^2)`
+
+
+## Classificação no KNN
+
+Para classificar um novo ponto, siga estas etapas:
+
+1. Calcule a distância entre o novo ponto e todos os pontos de treinamento.
+2. Selecione os "k" pontos mais próximos com base na distância calculada.
+3. Atribua a classe mais frequente entre esses "k" vizinhos ao novo ponto.
+
+## Regressão no KNN
+
+Para regressão, siga estas etapas:
+
+1. Calcule a distância entre o novo ponto e todos os pontos de treinamento.
+2. Selecione os "k" pontos mais próximos com base na distância calculada.
+3. Calcule a média (ou ponderação) dos valores alvo dos "k" pontos mais próximos como o valor de saída.
+
+## Escolha de "k"
+
+A escolha adequada do valor de "k" é essencial. Valores muito baixos podem levar a overfitting, enquanto valores muito altos podem levar a underfitting. Normalmente, valores ímpares são escolhidos para evitar empates na votação.
+
+O KNN é uma ferramenta valiosa em Machine Learning para problemas de classificação e regressão quando a distribuição dos dados é desconhecida.
+
+## Segue link de calclulo de KNN
+* [KNN.py](KNN.py)
+
+<hr>
+
+K-MEANS
 
