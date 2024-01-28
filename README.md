@@ -5,6 +5,11 @@ Formação Inteligência Artificial e Machine Learning 2023
 
 <hr>
 
+# ### Fundamentos
+
+<hr>
+
+
 # Algoritimos / Métodos
 
 * ### 1.   Classificação (Supervisionado)
@@ -409,6 +414,10 @@ esteja presente.
 
 <hr>
 
+# ### ESTUDO
+
+<hr>
+
 # Correlação e Regressão Linear
 
 ### Relação entre Correlação e Regressão
@@ -721,7 +730,7 @@ diferentes categorias ou classes.
 
   O Teorema de Bayes é fundamental na classificação probabilística. Ele ajuda a calcular a probabilidade de uma classe, dado um conjunto de atributos (features).
 
-  ### Fórmula do Teorema de Bayes
+  ### Fórmula
 
   `P(Classe | Dados) = (P(Dados | Classe) × P(Classe)) / P(Dados)`
 <br>
@@ -736,7 +745,7 @@ diferentes categorias ou classes.
 
   O Classificador Bayesiano Ingênuo é um classificador probabilístico baseado no Teorema de Bayes. É chamado de "ingênuo" porque assume que todas as características são independentes entre si.
 
-  ### Fórmula Básica
+  ### Fórmula
 
   `P(Classe|Dados) ∝ P(Classe) × ∏_{i} P(Dado_i|Classe`
 <br>
@@ -745,3 +754,157 @@ diferentes categorias ou classes.
   - `P(Classe|Dados)` é a probabilidade posterior de uma classe, dado um conjunto de dados.
   - `P(Classe)` é a probabilidade prévia da classe.
   - `∏_{i} P(Dado_i|Classe)` é o produto das probabilidades de cada característica individual, dado a classe.
+
+
+## Segue link de calclulo de Naive Bayes
+* Exemplo 1: [NaiveBayes.py](NaiveBayes.py)
+
+<hr>
+
+## Árvores de Decisão
+
+As Árvores de Decisão são modelos preditivos que utilizam regras binárias (sim/não ou verdadeiro/falso) para calcular uma decisão. A estrutura lembra uma árvore, com um nó raiz, nós internos e folhas.
+
+### Como funcionam?
+
+- **Nó Raiz:** Ponto de partida da árvore, onde é feita a primeira decisão.
+- **Nós Internos:** Representam decisões ou testes.
+- **Folhas (ou Nós Finais):** Onde a árvore chega a uma conclusão, representando a saída ou a classificação final.
+
+### Processo de Decisão
+
+A partir do nó raiz, a árvore faz perguntas binárias, guiando-se pelos nós internos com base nas respostas, até chegar a um nó folha, onde é dada a saída final.
+
+### Fórmulas e Critérios de Divisão
+
+Em Árvores de Decisão, é crucial escolher os melhores pontos de divisão (ou "splits"). Existem várias métricas para isso:
+
+- **Índice de Gini:** Usado para medir a impureza (ou pureza) de um nó.
+  
+  - **Fórmula:** `Gini = 1 - ∑(p_i)^2`
+  - **Onde:**
+    - `p_i` é a proporção de amostras que pertencem à classe i no conjunto.
+
+
+- **Entropia:** A Entropia é outra métrica que mede a impureza de um nó, baseada na teoria da informação. Quanto maior a entropia, mais desordenado é o nó.
+
+  - **Fórmula da Entropia:** `Entropia = -∑(p_i * log2(p_i))`
+  - **Onde:**
+    - `p_i` é a proporção de amostras que pertencem à classe i no conjunto.
+
+
+- **Ganho de Informação:** Baseado na entropia, uma medida da desordem ou impureza.
+  
+  - **Fórmula:** `IG(T, a) = Entropia(T) - ∑(|T_v| / |T|) * Entropia(T_v)`
+  - **Onde:**
+    - `IG(T, a)` é o ganho de informação do conjunto total T após a divisão baseada no atributo a.
+    - `T` é o conjunto de dados total antes da divisão.
+    - `a` é o atributo que está sendo considerado para a divisão.
+    - `T_v` são os subconjuntos resultantes da divisão.
+
+
+- **Redução da Variância:** Usado principalmente para problemas de regressão. Baseia-se na redução da variância do alvo antes e depois da divisão.
+
+## Métricas de Complexidade em Árvores de Decisão
+
+As métricas de complexidade são importantes para avaliar a eficiência e eficácia de uma árvore na tomada de decisões. Elas ajudam a entender se a árvore está muito simples ou muito complexa.
+
+- **Profundidade da Árvore:** Refere-se ao comprimento do caminho mais longo da raiz até uma folha. Uma árvore muito profunda pode ser um sinal de sobreajuste.
+
+
+- **Número de Folhas:** Quantidade de nós finais (folhas) na árvore. Mais folhas podem indicar uma árvore mais complexa.
+
+
+- **Número de Nós:** Contagem total de nós na árvore, incluindo nós internos e folhas. Um número maior de nós geralmente indica maior complexidade.
+
+
+- **Taxa de Erro de Classificação:** Mede a proporção de previsões incorretas em relação ao total de previsões. Uma taxa de erro baixa em dados de treinamento, mas alta em dados de teste, pode indicar sobreajuste.
+
+
+- **Redução Média da Impureza:** Indica quão eficaz cada característica (ou nó) é para reduzir a incerteza.
+
+
+- **Índice de Gini ou Entropia nos Nós:** Medidas de impureza ou desordem nos nós. Nós com altos valores de Gini ou Entropia podem indicar que a árvore não está fazendo boas divisões.
+
+
+- **Alpha de Poda (α):** Usado no algoritmo de poda de custo-complexidade. Determina o equilíbrio entre a complexidade da árvore e o ajuste aos dados de treinamento.
+
+
+- **Tamanho do Código (para Árvores de Decisão baseadas em regras):** Mede a complexidade em termos do tamanho do código necessário para expressar a árvore. Uma métrica relevante quando as árvores são convertidas em conjuntos de regras.
+
+## Dados Discretos
+
+### Definição
+
+Dados discretos são aqueles que podem assumir apenas valores específicos e distintos. Eles são contáveis e geralmente representam informações que podem ser categorizadas.
+
+### Exemplos
+
+- Número de usuários registrados em um site.
+- Quantidade de produtos vendidos.
+- Números inteiros como 1, 2, 3, etc.
+
+### Características
+
+- Geralmente representados por números inteiros.
+- Não podem ter valores fracionários entre dois pontos de dados adjacentes.
+- Frequentemente usados em cenários onde a contagem é relevante.
+
+## Dados Contínuos
+
+### Definição
+
+Dados contínuos são aqueles que podem assumir qualquer valor dentro de um intervalo. Eles são mensuráveis e representam quantidades que podem ser divididas em unidades menores, incluindo frações ou decimais.
+
+### Exemplos
+
+- Tempo necessário para completar uma tarefa.
+- Altura ou peso de uma pessoa.
+- Temperatura ou velocidade.
+
+### Características
+
+- Podem assumir qualquer valor dentro de um intervalo.
+- Frequentemente representados por números reais.
+- Usados em cenários onde a medição precisa é essencial.
+
+## Etapas da Indução de uma Árvore de Decisão
+
+### Seleção do Atributo para Divisão
+
+- A indução começa no nó raiz com todo o conjunto de dados.
+- O algoritmo seleciona o melhor atributo para dividir os dados, baseando-se em critérios como ganho de informação, índice de Gini ou redução de variância.
+
+### Divisão Baseada no Atributo Escolhido
+
+- O conjunto de dados é dividido em subconjuntos menores, onde cada subconjunto corresponde a um dos possíveis valores do atributo escolhido.
+- Para atributos contínuos, o algoritmo determina um ponto de corte.
+
+### Repetição do Processo para Cada Subconjunto
+
+- O algoritmo repete o processo para cada subconjunto, escolhendo o melhor atributo para cada um e dividindo-o mais.
+- Este processo continua recursivamente.
+
+### Critério de Parada
+
+- A indução de cada ramo da árvore continua até que um critério de parada seja atingido, como todos os dados no nó pertencem à mesma classe, não há mais atributos para considerar, a profundidade máxima é atingida ou o número de instâncias no nó é menor que um limiar mínimo.
+
+### Criação de um Nó Folha
+
+- Quando o critério de parada é atingido, um nó folha é criado.
+- Em tarefas de classificação, o nó folha representa a classe mais comum entre as instâncias no nó.
+- Em tarefas de regressão, ele representa a média ou mediana dos valores alvo.
+
+## Considerações Importantes
+
+### Sobreajuste
+
+Um risco comum na indução de árvores de decisão é o sobreajuste aos dados de treinamento. Técnicas como poda da árvore são usadas para mitigar isso.
+
+### Poda da Árvore
+
+A poda pode ser feita durante a construção da árvore (poda prévia) ou após a construção completa (poda posterior), envolvendo a remoção de partes da árvore que podem estar causando sobreajuste.
+
+### Importância do Alinhamento com os Dados
+
+A eficácia de uma árvore de decisão depende fortemente de quão bem suas divisões refletem as relações subjacentes nos dados.
