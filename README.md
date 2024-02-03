@@ -977,7 +977,7 @@ A classificação baseada em instância, por outro lado, refere-se a um método 
 
 <hr>
 
-## K-Nearest Neighbors (KNN) - Machine Learning
+# K-Nearest Neighbors (KNN)
 O K-Nearest Neighbors (KNN) é um algoritmo de aprendizado supervisionado amplamente utilizado para classificação e regressão. Ele se baseia no princípio de que objetos semelhantes tendem a estar próximos uns dos outros em um espaço de características.
 
 ### Distância Euclidiana
@@ -1014,5 +1014,97 @@ O KNN é uma ferramenta valiosa em Machine Learning para problemas de classifica
 
 <hr>
 
-K-MEANS
+# KMeans
 
+## Definição
+
+KMeans é um algoritmo de agrupamento (*clustering*) que visa particionar `n` observações em `k` agrupamentos (ou clusters) nos quais cada observação pertence ao cluster com a média mais próxima. É um método utilizado em análise de dados para identificar padrões e organizar os dados em categorias semelhantes com base em suas características.
+
+## Funcionamento
+
+1. **Inicialização**: Escolha de `k` pontos aleatórios dos dados como centros iniciais dos clusters (centroides).
+2. **Atribuição**: Atribua cada ponto ao centroide mais próximo, formando `k` clusters.
+3. **Atualização**: Recalcule o centroide de cada cluster tomando a média de todos os pontos que foram atribuídos ao cluster.
+4. **Iteração**: Repita os passos 2 e 3 até que a posição dos centroides não mude significativamente ou até que um critério de parada seja atingido (por exemplo, um número máximo de iterações).
+
+## Fórmulas
+
+- **Distância Euclidiana** 
+  - Usada para medir a proximidade entre pontos e centroides):
+    `d(p, q) = \sqrt{\sum_{i=1}^{n} (q_i - p_i)^2}`
+  - Onde: 
+    - `p` e `q` são dois pontos no espaço de características `n`-dimensional.
+
+- **Atualização do Centroide**:
+  `C_i = \frac{1}{|S_i|} \sum_{x_j \in S_i} x_j`
+  - Onde: 
+    - `C_i` é o centro do cluster `i`, `S_i` é o conjunto de pontos no cluster `i`, e `x_j` são os pontos pertencentes a `S_i`.
+
+## Objetivo
+
+O objetivo do KMeans é minimizar a soma das distâncias quadradas de cada ponto a seu centroide atribuído, conhecida como a **inércia** ou **variância intra-cluster**:
+\[
+\text{Inércia} = \sum_{i=1}^{k} \sum_{x \in S_i} ||x - C_i||^2
+\]
+
+## Considerações
+
+- A escolha de `k` é crucial para o desempenho do algoritmo e pode ser determinada usando métodos como o **método do cotovelo** ou análise de **silhueta**.
+- KMeans é sensível à inicialização dos centroides. Métodos como KMeans++ podem ser usados para melhorar a seleção inicial dos centroides.
+
+## Segue link de calclulo de Kmeans
+* [Kmeans.py](Kmeans.py)
+
+<hr>
+
+# Algoritmo Apriori
+
+O algoritmo Apriori é um método clássico de mineração de regras de associação que é amplamente utilizado para encontrar itens frequentes em grandes conjuntos de dados. Esses itens frequentes são usados para identificar padrões, correlações ou estruturas interessantes entre os conjuntos de dados, como hábitos de compra de consumidores. O algoritmo é baseado na ideia de que um subconjunto de um conjunto de itens frequente também deve ser frequente.
+
+## Definição
+
+O algoritmo Apriori utiliza uma abordagem iterativa, conhecida como "bottom up", onde os conjuntos de itens frequentes são estendidos um item por vez (uma abordagem chamada de candidato gerado), e os grupos de candidatos são testados contra os dados. O algoritmo termina quando nenhum novo conjunto de itens frequentes pode ser encontrado. A essência do algoritmo Apriori é sua propriedade de apriori, que reduz o espaço de busca eliminando os conjuntos de itens que têm um subconjunto infrequente.
+
+## Métodos e Fórmulas
+
+### 1. Geração de Conjuntos de Itens Frequentes
+
+- **Passo 1: Contagem de frequência.** Inicialmente, a frequência de cada item no conjunto de dados é contada e comparada a um suporte mínimo pré-definido. Apenas os itens que atendem ou excedem este suporte são mantidos.
+
+- **Passo 2: Formação de conjuntos de itens.** Os itens frequentes são então combinados para formar conjuntos de itens de tamanho 2. A frequência desses conjuntos é contada e os conjuntos que não atendem ao suporte mínimo são eliminados.
+
+- **Passo 3: Repetição.** Este processo é repetido, aumentando o tamanho dos conjuntos de itens a cada iteração, até que não possam ser formados mais conjuntos de itens frequentes que atendam ao suporte mínimo.
+
+### 2. Geração de Regras de Associação
+
+Após encontrar todos os conjuntos de itens frequentes, o algoritmo tentará formar regras de associação que preveem a ocorrência de um item com base na ocorrência de outros itens no conjunto de dados.
+
+- **Confiança:** A confiança de uma regra é definida como a proporção do número de transações que contêm todos os itens da regra para o número de transações que contêm o antecedente da regra.
+
+```latex
+\text{Confiança(A \rightarrow B)} = \frac{\text{Suporte(A \cup B)}}{\text{Suporte(A)}}
+```
+
+- **Suporte:** O suporte de um itemset é definido como a proporção do número de transações no conjunto de dados que contêm esse itemset.
+
+```latex
+\text{Suporte(A)} = \frac{\text{Número de transações contendo A}}{\text{Total de transações}}
+```
+
+### 3. Pruning (Poda)
+
+A poda é usada para reduzir o número de candidatos a serem considerados. Se um itemset não é frequente, então todos os seus supersets também não serão frequentes. Isso permite que o algoritmo ignore esses supersets durante as iterações.
+
+## Aplicações
+
+O algoritmo Apriori é amplamente utilizado em análise de cestas de mercado, recomendação de produtos, detecção de fraudes, e na análise de padrões de navegação na web, entre outros.
+
+## Desafios
+
+- **Desempenho:** Pode ser computacionalmente intensivo para conjuntos de dados muito grandes devido ao grande número de candidatos a conjuntos de itens gerados.
+
+- **Definição de Suporte e Confiança:** A seleção de um suporte e confiança mínimos apropriados pode ser desafiadora e pode exigir ajustes baseados em tentativa e erro.
+
+## Conclusão
+
+O algoritmo Apriori é uma ferramenta poderosa para mineração de regras de associação, permitindo a descoberta de relações interessantes em grandes conjuntos de dados. Apesar de seus desafios, ele fornece uma base sólida para análises de padrões e pode ser complementado com outras técnicas para melhorar seu desempenho e aplicabilidade.
