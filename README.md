@@ -1128,6 +1128,7 @@ A Engenharia de Atributos é uma etapa crucial no desenvolvimento de modelos de 
 ### 3. Geração e Extração de Características
 - **Geração de Características:** Criar novos atributos a partir dos dados existentes que capturam informações importantes não evidentes nos dados brutos.
 - **Extração de Características:** Aplicar técnicas para extrair informações de conjuntos de dados complexos (e.g., textos, imagens, séries temporais).
+- **Binning de Variáveis Numéricas:** Agrupar valores de atributos numéricos em intervalos discretos para simplificar a representação dos dados.
 
 ### 4. Transformação de Atributos
 - Modificar atributos existentes para melhorar sua contribuição para o modelo, como aplicar normalizações ou transformações.
