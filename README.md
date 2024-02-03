@@ -1054,57 +1054,186 @@ O objetivo do KMeans é minimizar a soma das distâncias quadradas de cada ponto
 
 ## Segue link de calclulo de Kmeans
 * [Kmeans.py](Kmeans.py)
+```python
+from sklearn.datasets import load_iris
+from sklearn.cluster import KMeans, AgglomerativeClustering, DBSCAN
+from sklearn.metrics import confusion_matrix
+import pandas as pd
+import matplotlib.pyplot as plt
+from scipy.cluster.hierarchy import dendrogram, linkage
+import numpy as np
+
+
+def plot_clusters(data, labels, centroids=None, target_names=None, title="Clusters"):
+    # Gerando uma paleta de cores aleatórias com base no número de labels únicos (incluindo ruído)
+    unique_labels = set(labels)
+    colors = plt.cm.rainbow(np.linspace(0, 1, len(unique_labels)))
+
+    # Mapeando cada label único para uma cor, incluindo uma cor específica para ruído
+    label_color = {label: color for label, color in zip(unique_labels, colors)}
+    noise_color = [0, 0, 0, 1]  # Preto para ruído
+
+    # Plotando as amostras com seus labels de cluster
+    plt.figure(figsize=(10, 8))
+    for label in unique_labels:
+        # Selecionando cor para o cluster ou ruído
+        color = noise_color if label == -1 else label_color[label]
+        # Selecionando marcação para o cluster ou ruído
+        marker = "x" if label == -1 else "o"
+        # Plotando pontos do cluster ou ruído
+        cluster_data = data[labels == label]
+        plt.scatter(cluster_data[:, 0], cluster_data[:, 1], c=[color],
+                    label=f'Cluster {label}' if label != -1 else 'Noise', alpha=0.5, marker=marker)
+
+    # Adicionando os centros dos clusters ao plot, se fornecidos
+    if centroids is not None and target_names is not None:
+        plt.scatter(centroids[:, 0], centroids[:, 1], color='yellow', edgecolor='k', marker='.', s=150,
+                    label='Centroids', linewidths=1)
+        # for i, center in enumerate(centroids):
+        # plt.scatter(center[0], center[1], color='yellow', edgecolor='k', marker='.', s=150, label='Centroids', linewidths=1)
+
+    plt.xlabel('Feature 0')  # Modifique para corresponder ao nome real da característica
+    plt.ylabel('Feature 1')  # Modifique para corresponder ao nome real da característica
+    plt.title(title)
+    plt.legend()
+    plt.show()
+
+# Carregando o dataset Iris
+iris = load_iris()
+
+# Criando um DataFrame com as características
+iris_df = pd.DataFrame(iris.data, columns=iris.feature_names)
+
+# Adicionando os labels verdadeiros ao DataFrame
+iris_df['target'] = iris.target
+
+# Adicionando os nomes dos targets (espécies) como uma nova coluna, mapeando os valores de 'target' para os nomes
+iris_df['species'] = iris_df['target'].apply(lambda x: iris.target_names[x])
+
+iris_df.head()  # Exibindo as primeiras linhas do DataFrame para verificação
+
+X = iris.data
+
+# iris.target contém os labels verdadeiros para cada instância do dataset,
+# representando a espécie de cada amostra de íris (setosa, versicolor, virginica)
+print(iris.target)
+
+# Aplicando o algoritmo KMeans com n_init explicitamente definido
+# kmeans = KMeans(n_clusters=3, random_state=42, n_init='auto')
+kmeans = KMeans(n_clusters=3, n_init=10)
+kmeans.fit(X)
+
+# Centroides dos clusters
+centroids = kmeans.cluster_centers_
+print(centroids)
+
+# Labels dos clusters para cada instância no dataset
+labels = kmeans.labels_
+print(labels)
+
+# Calculando e exibindo a matriz de confusão para avaliar o agrupamento em comparação com os labels verdadeiros
+resultados = confusion_matrix(iris.target, kmeans.labels_)
+print(resultados)
+
+# Plotando os clusters com os nomes dos targets nos centros dos clusters
+plot_clusters(X, kmeans.labels_, centroids, target_names=iris.target_names, title='Kmeans')
+
+# Aplicando DBSCAN, um algoritmo baseado em densidade para agrupamento que pode formar clusters de formas complexas
+dbscan = DBSCAN(eps=0.5, min_samples=3)
+dbscan_labels = dbscan.fit_predict(X)
+print(dbscan_labels)
+
+# Matriz de confusão para os resultados do DBSCAN
+resultados = confusion_matrix(iris.target, dbscan_labels)
+print(resultados)
+
+# Plotando os clusters com os nomes dos targets nos centros dos clusters
+plot_clusters(X, dbscan_labels, target_names=iris.target_names, title='DBScan')
+
+# Utilizando Agglomerative Clustering, um método hierárquico que agrupa os dados baseado na distância entre eles
+agglo = AgglomerativeClustering(n_clusters=3)
+agglo_labels = agglo.fit_predict(X)
+print(agglo_labels)
+
+# Matriz de confusão para os resultados do Agglomerative Clustering
+resultados = confusion_matrix(iris.target, agglo_labels)
+print(resultados)
+
+# Plotando os clusters com os nomes dos targets nos centros dos clusters
+plot_clusters(X, agglo_labels, target_names=iris.target_names, title='Agglomerative')
+
+# Realizando o agrupamento hierárquico
+linked = linkage(X, 'ward')
+
+# Plotando o dendrograma
+plt.figure(figsize=(18, 7))
+dendrogram(linked,
+           orientation='top',
+           labels=np.array(iris.target),
+           distance_sort='descending',
+           show_leaf_counts=True,
+          )
+plt.axhline(y=7, c='grey', lw=1, linestyle='dashed')
+plt.xlabel('Index of Iris data points')
+plt.ylabel('Ward distance')
+plt.title('Dendrogram of Iris Dataset')
+plt.show()
+```
 
 <hr>
 
 # Algoritmo Apriori
 
-O algoritmo Apriori é um método clássico de mineração de regras de associação que é amplamente utilizado para encontrar itens frequentes em grandes conjuntos de dados. Esses itens frequentes são usados para identificar padrões, correlações ou estruturas interessantes entre os conjuntos de dados, como hábitos de compra de consumidores. O algoritmo é baseado na ideia de que um subconjunto de um conjunto de itens frequente também deve ser frequente.
+## Introdução
+O algoritmo Apriori é uma técnica clássica de mineração de dados usada para extrair conjuntos de itens frequentes e regras de associação. É amplamente utilizado para análise de cesta de compras, onde o objetivo é encontrar combinações de produtos frequentemente comprados juntos. Desenvolvido por Agrawal e Srikant em 1994, o algoritmo Apriori usa uma abordagem iterativa baseada em candidatos, onde conjuntos de itens frequentes de tamanho `k` são usados para explorar candidatos de tamanho `k+1`.
 
-## Definição
+## Como Funciona
+1. **Definir o suporte mínimo**: O primeiro passo é definir um limiar de suporte mínimo para os itens. O suporte de um item é definido como a proporção de transações na base de dados que contêm esse item.
 
-O algoritmo Apriori utiliza uma abordagem iterativa, conhecida como "bottom up", onde os conjuntos de itens frequentes são estendidos um item por vez (uma abordagem chamada de candidato gerado), e os grupos de candidatos são testados contra os dados. O algoritmo termina quando nenhum novo conjunto de itens frequentes pode ser encontrado. A essência do algoritmo Apriori é sua propriedade de apriori, que reduz o espaço de busca eliminando os conjuntos de itens que têm um subconjunto infrequente.
+2. **Gerar conjuntos de itens frequentes**:
+    - Inicialmente, calcula-se o suporte de todos os itens individuais na base de dados e compara-se com o suporte mínimo. Itens que atendem ou excedem o suporte mínimo são considerados itens frequentes de tamanho 1.
+    - Pares de itens frequentes são então formados, e seu suporte é calculado. Pares que satisfazem o suporte mínimo avançam para a próxima rodada.
+    - O processo continua iterativamente, formando conjuntos maiores de itens frequentes até que não se possam formar mais conjuntos.
 
-## Métodos e Fórmulas
-
-### 1. Geração de Conjuntos de Itens Frequentes
-
-- **Passo 1: Contagem de frequência.** Inicialmente, a frequência de cada item no conjunto de dados é contada e comparada a um suporte mínimo pré-definido. Apenas os itens que atendem ou excedem este suporte são mantidos.
-
-- **Passo 2: Formação de conjuntos de itens.** Os itens frequentes são então combinados para formar conjuntos de itens de tamanho 2. A frequência desses conjuntos é contada e os conjuntos que não atendem ao suporte mínimo são eliminados.
-
-- **Passo 3: Repetição.** Este processo é repetido, aumentando o tamanho dos conjuntos de itens a cada iteração, até que não possam ser formados mais conjuntos de itens frequentes que atendam ao suporte mínimo.
-
-### 2. Geração de Regras de Associação
-
-Após encontrar todos os conjuntos de itens frequentes, o algoritmo tentará formar regras de associação que preveem a ocorrência de um item com base na ocorrência de outros itens no conjunto de dados.
-
-- **Confiança:** A confiança de uma regra é definida como a proporção do número de transações que contêm todos os itens da regra para o número de transações que contêm o antecedente da regra.
-
-```latex
-\text{Confiança(A \rightarrow B)} = \frac{\text{Suporte(A \cup B)}}{\text{Suporte(A)}}
-```
-
-- **Suporte:** O suporte de um itemset é definido como a proporção do número de transações no conjunto de dados que contêm esse itemset.
-
-```latex
-\text{Suporte(A)} = \frac{\text{Número de transações contendo A}}{\text{Total de transações}}
-```
-
-### 3. Pruning (Poda)
-
-A poda é usada para reduzir o número de candidatos a serem considerados. Se um itemset não é frequente, então todos os seus supersets também não serão frequentes. Isso permite que o algoritmo ignore esses supersets durante as iterações.
+3. **Gerar regras de associação**: A partir dos conjuntos de itens frequentes, as regras de associação que satisfazem os limiares de suporte e confiança mínimos são geradas.
 
 ## Aplicações
+- **Análise de cesta de compras**: Identificar produtos que são frequentemente comprados juntos.
+- **Cross-selling**: Desenvolver estratégias de vendas cruzadas com base na compra combinada de produtos.
+- **Recomendação de produtos**: Sugerir produtos com base no histórico de compras do cliente.
 
-O algoritmo Apriori é amplamente utilizado em análise de cestas de mercado, recomendação de produtos, detecção de fraudes, e na análise de padrões de navegação na web, entre outros.
+## Exemplo de Código em Python
+Um exemplo simples de implementação do algoritmo Apriori em Python usando a biblioteca `mlxtend`.
 
-## Desafios
+* [Apriori.py](Apriori.py)
+```python
+from mlxtend.frequent_patterns import apriori, association_rules
+from mlxtend.preprocessing import TransactionEncoder
+import pandas as pd
 
-- **Desempenho:** Pode ser computacionalmente intensivo para conjuntos de dados muito grandes devido ao grande número de candidatos a conjuntos de itens gerados.
+# Exemplo de conjunto de dados de transações
+dataset = [['Leite', 'Pão', 'Cerveja'],
+           ['Pão', 'Frango', 'Manteiga'],
+           ['Leite', 'Pão'],
+           ['Pão', 'Frango'],
+           ['Leite', 'Pão', 'Frango', 'Cerveja'],
+           ['Leite', 'Pão', 'Frango']]
 
-- **Definição de Suporte e Confiança:** A seleção de um suporte e confiança mínimos apropriados pode ser desafiadora e pode exigir ajustes baseados em tentativa e erro.
+# Preparação dos dados
+te = TransactionEncoder()
+te_ary = te.fit(dataset).transform(dataset)
+df = pd.DataFrame(te_ary, columns=te.columns_)
+print(df)
 
-## Conclusão
+# Aplicação do algoritmo Apriori
+frequent_itemsets = apriori(df, min_support=0.5, use_colnames=True)
 
-O algoritmo Apriori é uma ferramenta poderosa para mineração de regras de associação, permitindo a descoberta de relações interessantes em grandes conjuntos de dados. Apesar de seus desafios, ele fornece uma base sólida para análises de padrões e pode ser complementado com outras técnicas para melhorar seu desempenho e aplicabilidade.
+# Geração de regras de associação
+rules = association_rules(frequent_itemsets, metric="confidence", min_threshold=0.7)
+
+print(frequent_itemsets)
+print(rules)
+```
+
+<hr>
+
