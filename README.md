@@ -1145,3 +1145,92 @@ A Engenharia de Atributos é uma etapa crucial no desenvolvimento de modelos de 
 ## Conclusão
 
 A Engenharia de Atributos é um processo iterativo e criativo que exige conhecimento do domínio e compreensão profunda dos dados. As características bem projetadas podem significativamente melhorar a eficácia dos modelos de machine learning, tornando esta etapa fundamental para o sucesso de projetos de análise preditiva.
+
+<hr>
+
+# Seleção de Atributos
+
+Seleção de Atributos é uma técnica crucial para a preparação de dados antes da modelagem. O objetivo da seleção de atributos é identificar e selecionar os atributos (também conhecidos como variáveis ou características) mais relevantes para a tarefa de previsão ou classificação em questão. Isso ajuda a melhorar a eficiência do modelo, reduzir a complexidade computacional e melhorar a interpretabilidade do modelo ao remover dados irrelevantes ou redundantes.
+
+## Categorias de Métodos de Seleção de Atributos
+
+### 1. Métodos de Filtro (Filter Methods)
+
+Esses métodos utilizam medidas estatísticas para avaliar a importância de cada atributo em relação ao alvo, sendo 
+eficientes e rápidos, pois não requerem treinamento do modelo. Incluem:
+
+- **Correlação de Pearson:** Avalia a relação linear entre variáveis contínuas.
+- **Teste Chi-quadrado:** Avalia a dependência entre variáveis categóricas.
+- **Ganho de Informação:** Mede a redução da entropia ao dividir o dataset baseado em um atributo específico.
+
+### 2. Métodos de Embutido (Embedded Methods)
+
+Realizam a seleção de atributos como parte do processo de treinamento do modelo, considerando a interação entre atributos. Exemplos:
+
+- **Regularização L1 e L2 (Lasso e Ridge):** Penaliza o peso de atributos menos importantes.
+- **Árvores de Decisão e Modelos Baseados em Árvore:** Como Random Forest, avaliam diretamente a importância dos atributos.
+
+### 3. Métodos de Envoltório (Wrapper Methods)
+
+Avaliam subconjuntos de variáveis para identificar a combinação que melhor contribui para a precisão do modelo, podendo ser intensivos computacionalmente. Exemplos:
+
+- **RFE (Recursive Feature Elimination):** Remove recursivamente o atributo menos importante.
+- **Métodos de busca sequencial:** Como busca sequencial para frente (forward selection) e para trás (backward elimination).
+
+## Escolhendo a Técnica Certa
+
+A seleção da técnica de seleção de atributos depende de:
+
+- **Natureza dos dados:** Tipo de variáveis, tamanho do dataset.
+- **Complexidade computacional:** Recursos disponíveis e tempo.
+- **Tipo de modelo:** Alguns modelos possuem métodos de seleção de atributos embutidos.
+
+Experimentar diversas técnicas de seleção de atributos é aconselhável para identificar a mais eficaz para seu caso específico. A seleção pode ser um processo iterativo, ajustando-se com base em novas informações ou refinamentos do modelo.
+
+<hr>
+
+# Estatísticas Descritivas e Inferenciais
+
+## Variabilidade dos Dados
+
+A variabilidade indica quão dispersos estão os valores de um conjunto de dados em torno da média. Duas medidas principais são utilizadas para quantificar a variabilidade:
+
+### Variância (s²)
+
+A variância é a média dos quadrados das diferenças entre cada valor e a média do conjunto de dados.
+
+`s² = Σ(xi - x̄)² / (n - 1)`
+
+onde:
+- `xi` representa cada valor no conjunto de dados,
+- `x̄` é a média do conjunto de dados,
+- `n` é o número total de observações.
+
+### Desvio Padrão (s)
+
+O desvio padrão é a raiz quadrada da variância, proporcionando uma medida da dispersão que está nas mesmas unidades dos dados.
+
+`s = √(Σ(xi - x̄)² / (n - 1))`
+
+## Intervalo de Confiança para a Média
+
+O intervalo de confiança oferece uma faixa estimada dentro da qual a média real da população provavelmente se encontra, com um determinado nível de confiança.
+
+### Fórmula do Intervalo de Confiança
+
+`IC = x̄ ± Z * (s / √n)`
+
+onde:
+- `x̄` é a média da amostra,
+- `Z` é o valor crítico da distribuição normal padrão correspondente ao nível de confiança desejado (por exemplo, 1.96 para 95% de confiança),
+- `s` é o desvio padrão da amostra,
+- `n` é o tamanho da amostra.
+
+## Correlação entre Variabilidade e Intervalo de Confiança
+
+- **Impacto do Desvio Padrão**: Um maior desvio padrão (`s`) indica maior variabilidade nos dados, resultando em um intervalo de confiança mais amplo.
+- **Tamanho da Amostra**: Um tamanho de amostra maior (`n`) reduz o intervalo de confiança, aumentando a precisão da estimativa da média da população.
+
+## Conclusão
+
+A compreensão da variabilidade dos dados e a correta aplicação do cálculo do intervalo de confiança são fundamentais para a inferência estatística, permitindo estimativas mais precisas e informadas sobre a média da população.
